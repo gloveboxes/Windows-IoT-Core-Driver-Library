@@ -100,7 +100,7 @@ namespace Examples
 
             explorerHatPro.Motor1.Forward();
             explorerHatPro.Motor2.Forward();
-            await Task.Delay(5); // drive forward for 5 seconds
+            await Task.Delay(5000); // drive forward for 5 seconds
             explorerHatPro.Motor1.Stop();
             explorerHatPro.Motor2.Stop();
 
