@@ -35,6 +35,7 @@ Explorer Hat Pro (https://shop.pimoroni.com/products/explorer-hat).  Pin definit
 
     </description>
     <summary>
+Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sensors BMP280 Temperature and Pressure Sensor, MCP970X family of analog temperature sensors, LDR, plus Motor H-Bridges and Relays.
       </summary>
 
     <releaseNotes>     

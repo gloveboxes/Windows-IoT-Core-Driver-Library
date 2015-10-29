@@ -27,6 +27,7 @@ HATs
 ----
 Explorer Hat Pro (https://shop.pimoroni.com/products/explorer-hat).  Pin definitions, on board LEDs, ADS1015 ADC, H-Brigde/Motor (Capacitive touch yet to be implemented)
 
+As at Oct 29, 2015 to use the complete functionality of the Explorer Hat Pro then you need to be running the Windows 10 Insider Preview (build 10.0.10556) available from http://ms-iot.github.io/content/en-US/Downloads.htm 
 
 Dependencies
 ------------
