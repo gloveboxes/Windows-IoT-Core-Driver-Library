@@ -2,8 +2,11 @@
 
 Also available on Nuget: Install-Package Glovebox.IoT.Devices 
 
-ADC/Convertors - IAdcControllerProvider Interface Compliant 
+ADC/Convertors - 
 --------------
+
+ADCs conform to the IAdcControllerProvider Interface in the Windows IoT Extensions for the UWP 
+
 - ADS1015
 - MCP3002
 
