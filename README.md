@@ -102,7 +102,7 @@ https://github.com/anjdreas/UnitsNet
 
 
 
-## Directly wired
+## Standard Breadboard
 
     using Glovebox.IoT.Devices.Actuators;
     using Glovebox.IoT.Devices.Converters;
