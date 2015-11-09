@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -18,7 +18,7 @@
 
       Sensors
       -------
-      - BMP280 Air Temperature and Pressure
+      - BMP280, BMP180, BMP085 Air Temperature and Pressure
       - MCP970X Range of analog temperature sensors - MCP9700A, MCP9701A, MCP9701AE
       - LDR Light Dependent Resistor
 
@@ -42,12 +42,13 @@ Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sen
     <releaseNotes>     
 Update Log
 
+1.0.1: Added BMP180 and BMP085 Air temperature and pressure sensors
 1.0.0: Initial release  
 
     </releaseNotes>
     <iconUrl>https://ngtq4a.bn1303.df.livefilestore.com/y3pnCkvgPns1m9j_6Y9YVBFqpWFB5jRwa75Eq740p3nRMNkQ5bCULFMV7R8ofEicQzloMzgZfYIZ5pYC_Vjy2Qb7XFD6UzKMWbq1GdidqzTcSBfHLqd1xBRo3lBp_ZcPQe-ICiLyaK_1Nt9GdFlUi3FdNIUPCa-2BaF0zEKed_7lSI/LEDMatrixNuget.JPG</iconUrl>
     <copyright>Copyright 2015</copyright>
-    <tags>IoT Windows10 Raspberry Minnowboard ADS1015 MCP3002 BMP280 MCP9700A MCP9701A MCP9701AE Motor Pimoroni Explorer LED Relay LDR</tags>
+    <tags>IoT Windows10 Raspberry Minnowboard ADS1015 MCP3002 BMP280 BMP180 BMP085 MCP9700A MCP9701A MCP9701AE Motor Pimoroni Explorer LED Relay LDR</tags>
     <dependencies>
     </dependencies>
   </metadata>
