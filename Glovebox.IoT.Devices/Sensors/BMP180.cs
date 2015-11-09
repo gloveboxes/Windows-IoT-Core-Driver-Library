@@ -8,10 +8,9 @@ using Windows.Devices.I2c;
 namespace Glovebox.IoT.Devices.Sensors
 {
     // support BMP085 and BMP180 chipsets
-    // code migrated from :-
-        //https://github.com/adafruit/Adafruit_BMP085_Unified/blob/master/Adafruit_BMP085_U.cpp
-        // https://github.com/unixphere/bmp18x/blob/master/bmp18x-core.c
-    public class BMP18x : IDisposable
+    // code migrated from https://github.com/adafruit/Adafruit_BMP085_Unified/blob/master/Adafruit_BMP085_U.cpp
+    // https://github.com/unixphere/bmp18x/blob/master/bmp18x-core.c
+    public class BMP180 : IDisposable
     {
         enum Register : byte
         {
@@ -83,7 +82,7 @@ namespace Glovebox.IoT.Devices.Sensors
         public Pressure Pressure => Pressure.From(GetPressure(), PressureUnit.Pascal);
 
 
-        public BMP18x(Mode mode= Mode.STANDARD)
+        public BMP180(Mode mode= Mode.STANDARD)
         {
             _bmp085Mode = mode;
         }

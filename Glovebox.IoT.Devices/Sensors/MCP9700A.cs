@@ -1,8 +1,7 @@
-﻿using Glovebox.IoT.Devices.Converters;
-using UnitsNet;
-using Windows.Devices.Adc;
+﻿using Windows.Devices.Adc;
 
-namespace Glovebox.IoT.Devices.Sensors {
+namespace Glovebox.IoT.Devices.Sensors
+{
 
     // http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en022289
     public class MCP9700A : MCP970XBase {

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -42,6 +42,7 @@ Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sen
     <releaseNotes>     
 Update Log
 
+1.0.2: misnamed BMP180 constructor
 1.0.1: Added BMP180 and BMP085 Air temperature and pressure sensors
 1.0.0: Initial release  
 

@@ -8,6 +8,7 @@ using Glovebox.IoT.Devices.Sensors;
 using Glovebox.Graphics.Drivers;
 using Glovebox.Graphics.Components;
 
+
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
 namespace WeatherStation
@@ -23,7 +24,7 @@ namespace WeatherStation
             _deferral = taskInstance.GetDeferral();
             LED8x8Matrix matrix = new LED8x8Matrix(driver);
 
-            BMP18x tempAndPressure = new BMP18x();
+            BMP180 tempAndPressure = new BMP180();
 
             while (true)
             {

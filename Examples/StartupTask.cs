@@ -21,7 +21,7 @@ namespace Examples
             _deferral = taskInstance.GetDeferral();
 
 
-            BMP18x tempAndPressure = new BMP18x(BMP18x.Mode.STANDARD);
+            BMP180 tempAndPressure = new BMP180(BMP180.Mode.STANDARD);
 
 
             while (true)
