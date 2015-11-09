@@ -17,14 +17,15 @@ namespace WeatherStation
     {
         BackgroundTaskDeferral _deferral;
         MAX7219 driver = new MAX7219(4, MAX7219.Rotate.None, MAX7219.Transform.HorizontalFlip);
-        
+
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
             LED8x8Matrix matrix = new LED8x8Matrix(driver);
 
-            BMP180 tempAndPressure = new BMP180();
+            BMP180 tempAndPressure = new BMP180();            
+
 
             while (true)
             {
