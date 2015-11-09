@@ -96,7 +96,7 @@ namespace Glovebox.IoT.Devices.Sensors
 
         public Temperature Temperature => Temperature.From(GetTemperature(), TemperatureUnit.DegreeCelsius);
 
-        public Pressure Pressure => Pressure.From(GetPressue(), PressureUnit.Pascal);
+        public Pressure Pressure => Pressure.From(GetPressure(), PressureUnit.Pascal);
 
         public void Initialise()
         {
@@ -213,7 +213,7 @@ namespace Glovebox.IoT.Devices.Sensors
             }
         }
 
-        private double GetPressue()
+        private double GetPressure()
         {
             GetTemperature(); // the pressure reading has a dependency of temperature
 

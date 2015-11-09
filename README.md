@@ -13,6 +13,8 @@ ADCs conform to the IAdcControllerProvider Interface in the Windows IoT Extensio
 Sensors
 -------
 - BMP280 Air Temperature and Pressure
+- BMP085 Air Temperature and Pressure
+- BMP180 Air Temperature and Pressure
 - MCP970X Range of analog temperature sensors - MCP9700A, MCP9701A, MCP9701AE
 - LDR Light Dependent Resistor
 
