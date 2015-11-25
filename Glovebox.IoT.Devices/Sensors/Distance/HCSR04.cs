@@ -72,6 +72,8 @@ namespace Glovebox.IoT.Devices.Sensors.Distance
                 // since the sound waves traveled to the obstacle and back to the sensor
                 // I am dividing by 2 to represent travel time to the obstacle
 
+                
+
                 return Length.FromCentimeters(time * 34.3 / 2.0); // at 20 degrees at sea level
             }
         }

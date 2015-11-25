@@ -8,37 +8,36 @@
     <owners>Dave Glover</owners>
     <projectUrl>https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Library</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>
-      Windows 10 for IoT Devices
+    <description>Windows 10 for IoT Devices
 
-      ADC/Convertors - IAdcControllerProvider Interface Compliant
-      --------------
-      - ADS1015
-      - MCP3002
+ADC/Convertors - IAdcControllerProvider Interface Compliant
+--------------
+ADS1015 and MCP3002
 
-      Sensors
-      -------
-      - BMP280, BMP180, BMP085 Air Temperature and Pressure
-      - MCP970X Range of analog temperature sensors - MCP9700A, MCP9701A, MCP9701AE
-      - HCSR04 and Infrared Distance sensors
-      - LDR Light Dependent Resistor
+Sensors
+-------
+- BMP280, BMP180, BMP085 Air Temperature and Pressure
+- MCP970X Range of analog temperature sensors - MCP9700A, MCP9701A, MCP9701AE
+- HCSR04 and Infrared Distance sensors
+- LDR Light Dependent Resistor
 
-      Actuators
-      ---------
-      - LED On Off and Blink support
-      - Motor Class for use with an H-Bridge.  Supports Stop, Forward, Backward, Stop
-      - Relay - On Off support
-      - Generalised GPIO Output control - On off support
+Actuators
+---------
+- LED On Off and Blink support
+- Motor Class for use with an H-Bridge.  Supports Stop, Forward, Backward, Stop
+- Relay - On Off support
+- Generalised GPIO Output control - On off support
 
-      HATs
-      ----
-      Explorer Hat Pro (https://shop.pimoroni.com/products/explorer-hat).  Pin definitions, on board LEDs, ADS1015 ADC, H-Brigde/Motor (Capacitive touch yet to be implemented)
+HATs
+----
+Explorer Hat Pro (https://shop.pimoroni.com/products/explorer-hat).  Pin definitions, on board LEDs, ADS1015 ADC, H-Brigde/Motor (Capacitive touch yet to be implemented)
 
-      **NOTE** As at Oct 29, 2015 to use the complete functionality of the Explorer Hat Pro then you need to be running the Windows 10 Insider Preview (build 10.0.10556) available from http://ms-iot.github.io/content/en-US/Downloads.htm
+**NOTE** As at Oct 29, 2015 to use the complete functionality of the Explorer Hat Pro then you need to be running the Windows 10 Insider Preview (build 10.0.10556) available from http://ms-iot.github.io/content/en-US/Downloads.htm
     </description>
     <summary>
-Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sensors BMP280 Temperature and Pressure Sensor, MCP970X family of analog temperature sensors, LDR, plus Motor H-Bridges and Relays.
-      </summary>
+Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sensors BMP280 and BMP180 Temperature and Pressure Sensor, MCP970X family of analog temperature sensors, LDR, HC-SR04 and Infrared distance sensor plus Motor H-Bridges and Relays.
+Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Library
+    </summary>
 
     <releaseNotes>
       Update Log
