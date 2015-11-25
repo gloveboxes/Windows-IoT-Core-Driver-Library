@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.7</version>
+    <version>1.0.12</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -53,7 +53,9 @@ Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Libra
     <copyright>Copyright 2015</copyright>
     <tags>IoT Windows10 Raspberry Minnowboard ADS1015 MCP3002 BMP280 BMP180 BMP085 MCP9700A MCP9701A MCP9701AE HC-SR04 HCSR04 Motor Pimoroni Explorer LED Relay LDR</tags>
     <dependencies>
-      <dependency id="UnitsNet" version="3.20.0" />
+      <group targetFramework="portable-net45+win+wp80+wpa81">
+        <dependency id="UnitsNet" version="3.20.0" />
+      </group>
     </dependencies>
   </metadata>
 </package>
