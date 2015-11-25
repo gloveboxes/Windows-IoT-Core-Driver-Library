@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.12</version>
+    <version>1.0.14</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -41,6 +41,7 @@ Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Libra
 
     <releaseNotes>
       Update Log
+      1.0.8 - 1.0.14 Nuget Packaging issues
       1.0.7: Nuget Package fix
       1.0.6: Updated HCSR04 ultrasonic distance sensor with a timeout
       1.0.3 - 1.0.5 Nuget Packaging issues

@@ -23,7 +23,13 @@ namespace Glovebox.IoT.Devices.Sensors.Distance
 
         public int TimeoutMilliseconds { get; set; } = 20;
 
-        public HCSR04(byte trig_Pin, byte echo_Pin, int timeoutMilliseconds)
+        /// <summary>
+        /// Create an HCSR04 Sensor
+        /// </summary>
+        /// <param name="trig_Pin"></param>
+        /// <param name="echo_Pin"></param>
+        /// <param name="timeoutMilliseconds">defaults to 20</param>
+        public HCSR04(byte trig_Pin, byte echo_Pin, int timeoutMilliseconds=20)
         {
 
             this.trig_Pin = trig_Pin;
