@@ -1,4 +1,8 @@
-﻿using Glovebox.IoT.Devices.HATs;
+﻿using Glovebox.IoT.Devices.Converters;
+using Glovebox.IoT.Devices.HATs;
+using Glovebox.IoT.Devices.Sensors;
+using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using static Glovebox.IoT.Devices.HATs.ExplorerHatPro;
@@ -7,22 +11,30 @@ using static Glovebox.IoT.Devices.HATs.ExplorerHatPro.Pin;
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
 namespace ExplorerHatProSample {
-    public sealed class StartupTask : IBackgroundTask
-    {
-        ExplorerHatPro hat = new ExplorerHatPro();
+    public sealed class StartupTask : IBackgroundTask {
 
-        public void Run(IBackgroundTaskInstance taskInstance)
-        {
+        public void Run(IBackgroundTaskInstance taskInstance) {
 
-            var light = hat.AnalogRead(Analog.A1).ReadRatio();
-                
-            hat.Led(Led.Blue).On();
-            hat.Motor(Motor.MotorOne).Forward();
-            hat.Motor(Motor.MotorTwo).Backward();
-            Task.Delay(1000);
-            hat.Motor(Motor.MotorOne).Stop();
-            hat.Led(Led.Blue).On();
+            using (ExplorerHatPro hat = new ExplorerHatPro(ADS1015.Gain.Volt5))
+            using (BMP280 bmp280 = new BMP280() { I2C_ADDRESS = 0x76 }) {
 
+                while (true) {
+                    Debug.WriteLine($"Temperature {bmp280.Temperature.DegreesCelsius}C, Pressure {bmp280.Pressure.Hectopascals}, Light ratio {hat.AnalogRead(AnalogPin.Ain2).ReadRatio()} ");
+
+                    for (int l = 0; l < hat.LedCount; l++) {
+                        hat.Led((Led)l).On();
+                        Task.Delay(20).Wait();
+                    }
+
+                    for (int l = 0; l < hat.LedCount; l++) {
+                        hat.Led((Led)l).Off();
+                        Task.Delay(20).Wait();
+                    }
+                }
+
+                //hat.Motor(Motor.MotorOne).Forward();
+                //hat.Motor(Motor.MotorTwo).Backward();
+            }
 
             // 
             // TODO: Insert code to perform background work
