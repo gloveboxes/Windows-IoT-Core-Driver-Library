@@ -29,13 +29,14 @@ namespace Glovebox.IoT.Devices.HATs
                 Four = 25,
             }
 
-            public enum Led : byte
-            {
-                Blue = 4,
-                Yellow = 17,
-                Red = 27,
-                Green = 5,
+            public enum Led : byte {
+                Blue,
+                Yellow,
+                Red,
+                Green,
             }
+
+
 
             public enum Spi : ushort
             {
@@ -57,13 +58,14 @@ namespace Glovebox.IoT.Devices.HATs
                 SCL = 3
             }
 
-            public enum Motor : ushort
-            {
-                TwoPlus = 21,
-                TwoMinus = 26,
-                OnePlus = 19,
-                OneMinus = 20
-            }
+            //public enum Motor : ushort
+            //{
+            //    TwoPlus,
+            //    TwoMinus,
+            //    OnePlus,
+            //    OneMinus
+            //}
+
 
             // Map phycical channels to location on bread board
             public enum Analog : byte
@@ -73,83 +75,88 @@ namespace Glovebox.IoT.Devices.HATs
                 A3 = 1,
                 A4 = 0
             }
+
+            public enum Motor : byte {
+                MotorOne,
+                MotorTwo
+            }
+        }
+
+        public enum State {
+            Off = 0,
+            On = 1
+        }
+
+        enum LedMap : byte {
+            Blue = 4,
+            Yellow = 17,
+            Red = 27,
+            Green = 5,
+        }
+
+        enum MotorMap : ushort {
+            TwoPlus = 21,
+            TwoMinus = 26,
+            OnePlus = 19,
+            OneMinus = 20
         }
 
         public bool IsAdcInitalised { get; private set; } = false;
-        public bool AreLedsInitalised { get; private set; } = false;
-        public bool AreMotorsInitalised { get; private set; } = false;
 
         AdcProviderManager adcManager;
-        public IReadOnlyList<AdcController> adcControllers;
-        public AdcController Adc { get; private set; }
+        IReadOnlyList<AdcController> adcControllers;
+        AdcController Adc { get; set; }
+
+        Windows.Devices.Adc.AdcChannel[] channels = new AdcChannel[4];
+
+        Led[] Leds = new Led[4];
+        Glovebox.IoT.Devices.Actuators.Motor[] motors = new Actuators.Motor[2];
 
 
-        public Led[] Leds;
-        public Motor[] motors;
-
-
-        public Led ledBlue { get { return Leds[0]; } }
-        public Led ledYellow { get { return Leds[1]; } }
-        public Led ledRed { get { return Leds[2]; } }
-        public Led ledGreen { get { return Leds[3]; } }
-
-        public Motor Motor1 { get { return motors[0]; } }
-        public Motor Motor2 { get { return motors[1]; } }
-
-
-
-        public async Task InitaliseAdcAsync() {
+        bool InitaliseAdc() {
             adcManager = new AdcProviderManager();
             adcManager.Providers.Add(new ADS1015(ADS1015.Gain.Volt33));
-            adcControllers = await adcManager.GetControllersAsync();
+            adcControllers =  adcManager.GetControllersAsync().GetResults();
 
             Adc = adcControllers[0];
 
             IsAdcInitalised = true;
+            return IsAdcInitalised;
         }
 
 
-        public void InitaliseLeds()
-        {
-            Leds = new Led[] {
-                    new Led(Pin.Led.Blue),
-                    new Led(Pin.Led.Yellow),
-                    new Led(Pin.Led.Red),
-                    new Led(Pin.Led.Green)
-                };
-
-            AreLedsInitalised = true;
+        public Motor Motor(Pin.Motor m) {
+            switch (m) {
+                case Pin.Motor.MotorOne:
+                    if (motors[0] == null) { motors[0] = new Motor((int)MotorMap.OnePlus, (int)MotorMap.OneMinus); }
+                    return motors[0];
+                case Pin.Motor.MotorTwo:
+                    if (motors[1] == null) { motors[1] = new Motor((int)MotorMap.TwoPlus, (int)MotorMap.TwoMinus); }
+                    return motors[1];
+                default:
+                    break;
+            }
+            return null;
         }
 
 
-        public void InitaliseMotors()
-        {
-            motors = new Motor[]
-            {
-                    new Motor((int)Pin.Motor.OnePlus, (int)Pin.Motor.OneMinus),
-                    new Motor((int)Pin.Motor.TwoPlus, (int)Pin.Motor.TwoMinus)
-            };
-
-            AreMotorsInitalised = true;
+        public Led Led(Pin.Led pin) {
+            int mappedPin = (int)Enum.GetNames(typeof(LedMap)).GetValue((int)pin);
+            if (Leds[(int)pin] == null) { Leds[(int)pin] = new Led(mappedPin); }
+            return Leds[(int)pin];
         }
 
-        public async Task InitialiseHatAsync(bool initAdc = true, bool initLeds = true, bool initMotors = true)
-        {
-            if (initAdc)
-            {
-                await InitaliseAdcAsync();
-            }
+        public AdcChannel AnalogRead(Pin.Analog pin) {
+            if (!IsAdcInitalised) { InitaliseAdc(); }
+            if (channels[(int)pin] == null) { channels[(int)pin] = Adc.OpenChannel((int)pin); }
+            return channels[(int)pin];
+        }
 
-            if (initMotors)
-            {
-                InitaliseMotors();
-       
-            }
 
-            if (initLeds)
-            {
-                InitaliseLeds();
-            }
+        public double AnalogReadRatio(Pin.Analog pin) {
+            if (!IsAdcInitalised) { InitaliseAdc(); }
+            if (channels[(int)pin] == null) { channels[(int)pin] = Adc.OpenChannel((int)pin); }
+            return channels[(int)pin].ReadRatio();
         }
     }
 }
