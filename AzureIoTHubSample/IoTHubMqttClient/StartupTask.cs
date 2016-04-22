@@ -1,4 +1,6 @@
-﻿using Glovebox.IoT.Devices.Converters;
+﻿using Glovebox.Graphics.Components;
+using Glovebox.Graphics.Drivers;
+using Glovebox.IoT.Devices.Converters;
 using Glovebox.IoT.Devices.HATs;
 using Glovebox.IoT.Devices.Sensors;
 using System;
@@ -15,10 +17,9 @@ namespace IoTHubMqttClient {
 
         BackgroundTaskDeferral deferral;
 
-        //   private FEZHAT hat;
-
         ExplorerHatPro hat = new ExplorerHatPro(ADS1015.Gain.Volt5);
-        BMP280 bmp280 = new BMP280() { I2C_ADDRESS = 0x76 };
+        BME280 bme280 = new BME280();
+        LED8x8Matrix matrix = new LED8x8Matrix(new Ht16K33());
 
         Telemetry telemetry;
 
@@ -28,7 +29,7 @@ namespace IoTHubMqttClient {
 
         private MqttClient client;
 
-        public async void Run(IBackgroundTaskInstance taskInstance) {
+        public void Run(IBackgroundTaskInstance taskInstance) {
             deferral = taskInstance.GetDeferral();
 
             telemetry = new IoTHubMqttClient.Telemetry("Sydney", cm.hubName);
@@ -45,10 +46,17 @@ namespace IoTHubMqttClient {
 
             var result = Task.Run(async () => {
                 while (true) {
+                    matrix.DrawSymbol(Glovebox.Graphics.Grid.Grid8x8.Symbols.HourGlass);
+                    matrix.FrameDraw();
+
                     if (!client.IsConnected) { client.Connect(cm.hubName, hubUser, cm.hubPass); }
                     if (client.IsConnected) {
-                        client.Publish(hubTopicPublish, telemetry.ToJson(bmp280.Temperature.DegreesCelsius, hat.AnalogRead(ExplorerHatPro.AnalogPin.Ain2).ReadRatio(), bmp280.Pressure.Hectopascals, 0));
+                        client.Publish(hubTopicPublish, telemetry.ToJson(bme280.Temperature.DegreesCelsius, hat.AnalogRead(ExplorerHatPro.AnalogPin.Ain2).ReadRatio(), bme280.Pressure.Hectopascals, bme280.Humidity));
                     }
+
+                    matrix.FrameClear();
+                    matrix.FrameDraw();
+
                     await Task.Delay(30000); // don't leave this running for too long at this rate as you'll quickly consume your free daily Iot Hub Message limit
                 }
             });

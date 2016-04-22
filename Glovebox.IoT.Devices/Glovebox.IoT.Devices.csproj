@@ -116,6 +116,7 @@
     <Compile Include="Converters\AdcProviderManager.cs" />
     <Compile Include="Converters\ADS1015.cs" />
     <Compile Include="Converters\MCP3002.cs" />
+    <Compile Include="Sensors\BME280.cs" />
     <Compile Include="Sensors\BMP180.cs" />
     <Compile Include="Sensors\BMP280.cs" />
     <Compile Include="Sensors\Distance\HCSR04.cs" />

@@ -3,6 +3,14 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -1815,6 +1823,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -3488,6 +3504,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -5119,6 +5143,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -6800,6 +6832,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -8431,6 +8471,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -10112,6 +10160,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Glovebox.Graphics/1.0.8": {
+        "compile": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Glovebox.Graphics.dll": {}
+        }
+      },
       "IoT.Ntp/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -11744,6 +11800,16 @@
     }
   },
   "libraries": {
+    "Glovebox.Graphics/1.0.8": {
+      "sha512": "9y7ryP1aJDkHlRtIfcQg7c5wXk5wjN1p9xGql5V+Cx67RwDN2ltapsbvIxh3xv0l5bn8TJg2WiIEC8nocdp8cA==",
+      "type": "package",
+      "files": [
+        "CreateNugetPackage.bat",
+        "Glovebox.Graphics.1.0.8.nupkg.sha512",
+        "Glovebox.Graphics.nuspec",
+        "lib/uap10.0/Glovebox.Graphics.dll"
+      ]
+    },
     "IoT.Ntp/1.0.0": {
       "sha512": "zoQzuA/PDK0uHkMJlUHJYWQptKIelkRePhH9BSDtHL4dblbIqu5K+KbXRKE4Y9h4xMC6WFBmTxOta50PnBTfsw==",
       "type": "package",
@@ -15088,6 +15154,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Glovebox.Graphics >= 1.0.8",
       "IoT.Ntp >= 1.0.0",
       "M2Mqtt >= 4.3.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",

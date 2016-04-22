@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Glovebox.Graphics": "1.0.8",
     "IoT.Ntp": "1.0.0",
     "M2Mqtt": "4.3.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
