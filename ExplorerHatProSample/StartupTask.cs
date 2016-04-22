@@ -32,8 +32,8 @@ namespace ExplorerHatProSample {
                     }
                 }
 
-                //hat.Motor(Motor.MotorOne).Forward();
-                //hat.Motor(Motor.MotorTwo).Backward();
+                //hat.Motor(MotorId.MotorOne).Forward();
+                //hat.Motor(MotorId.MotorTwo).Backward();
             }
 
             // 

@@ -76,37 +76,6 @@ namespace Examples
             await Task.Delay(5000);  // wait for 5 second
             leftMotor.Stop();
             rightMotor.Stop();
-
-            //// Explorer Hat Pro Demo
-            //// note this demo attempts to open ADS1015.  Comment out the ADS1015 create in the first demo else you'll get an access violation
-
-            //ExplorerHatPro explorerHatPro = new ExplorerHatPro();
-            //await explorerHatPro.InitialiseHatAsync(true, true, true); // initialise ADC, LEDS and motors
-
-            //if (!explorerHatPro.IsAdcInitalised)// alternatively initialise the ADS1015 on the board
-            //{
-            //    await explorerHatPro.InitaliseAdcAsync();
-            //}
-
-            //explorerHatPro.ledBlue.On();  // turn on the blue light
-            //explorerHatPro.ledYellow.On();
-            //explorerHatPro.ledRed.On();
-            //explorerHatPro.ledGreen.On();
-
-            //for (int l = 0; l < explorerHatPro.Leds.Length; l++)  // alternatively you can loop through the collection of lights
-            //{
-            //    explorerHatPro.Leds[l].Off();
-            //}
-
-
-            //explorerHatPro.Motor1.Forward();
-            //explorerHatPro.Motor2.Forward();
-            //await Task.Delay(5000); // drive forward for 5 seconds
-            //explorerHatPro.Motor1.Stop();
-            //explorerHatPro.Motor2.Stop();
-
-            //Ldr lightSensor = new Ldr(explorerHatPro.Adc.OpenChannel(0));
-            //var lightPercentage = lightSensor.ReadRatio * 100;
         }
     }
 }

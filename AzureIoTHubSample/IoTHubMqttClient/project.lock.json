@@ -3,6 +3,25 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -260,6 +279,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1788,6 +1815,25 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -1995,6 +2041,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Private.DataContractSerialization/4.1.0": {
@@ -3434,6 +3488,25 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -3638,6 +3711,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
@@ -5038,6 +5119,25 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -5250,6 +5350,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Private.DataContractSerialization/4.1.0": {
@@ -6692,6 +6800,25 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -6896,6 +7023,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
@@ -8296,6 +8431,25 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -8508,6 +8662,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Private.DataContractSerialization/4.1.0": {
@@ -9950,6 +10112,25 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "IoT.Ntp/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+        },
+        "compile": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/Porrey.Uwp.Ntp.dll": {}
+        }
+      },
+      "M2Mqtt/4.3.0": {
+        "compile": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/win81/M2Mqtt.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -10154,6 +10335,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/8.0.3": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
@@ -11555,6 +11744,50 @@
     }
   },
   "libraries": {
+    "IoT.Ntp/1.0.0": {
+      "sha512": "zoQzuA/PDK0uHkMJlUHJYWQptKIelkRePhH9BSDtHL4dblbIqu5K+KbXRKE4Y9h4xMC6WFBmTxOta50PnBTfsw==",
+      "type": "package",
+      "files": [
+        "IoT.Ntp.1.0.0.nupkg.sha512",
+        "IoT.Ntp.nuspec",
+        "lib/netcore/Porrey.Uwp.Ntp.dll"
+      ]
+    },
+    "M2Mqtt/4.3.0": {
+      "sha512": "2A1uM20uxuovQKPA0dkZUqD9gUpIMaX7KxdLiVM7IEXdPRL709hGuudHnvlDxm2/6b2LcOjshrYGVG9vdpipag==",
+      "type": "package",
+      "files": [
+        "M2Mqtt.4.3.0.nupkg.sha512",
+        "M2Mqtt.nuspec",
+        "lib/net39-cf/DeployFileList.txt",
+        "lib/net39-cf/M2Mqtt.NetCf39.dll",
+        "lib/net39-cf/M2Mqtt.NetCf39.pdb",
+        "lib/net45/M2Mqtt.Net.dll",
+        "lib/net45/M2Mqtt.Net.pdb",
+        "lib/netmf42/M2Mqtt.NetMf.dll",
+        "lib/netmf42/M2Mqtt.NetMf.pdb",
+        "lib/netmf42/be/M2Mqtt.NetMf.pdb",
+        "lib/netmf42/be/M2Mqtt.NetMf.pdbx",
+        "lib/netmf42/be/M2Mqtt.NetMf.pe",
+        "lib/netmf42/le/M2Mqtt.NetMf.pdb",
+        "lib/netmf42/le/M2Mqtt.NetMf.pdbx",
+        "lib/netmf42/le/M2Mqtt.NetMf.pe",
+        "lib/netmf43/M2Mqtt.NetMf.dll",
+        "lib/netmf43/M2Mqtt.NetMf.pdb",
+        "lib/netmf43/be/M2Mqtt.NetMf.pdb",
+        "lib/netmf43/be/M2Mqtt.NetMf.pdbx",
+        "lib/netmf43/be/M2Mqtt.NetMf.pe",
+        "lib/netmf43/le/M2Mqtt.NetMf.pdb",
+        "lib/netmf43/le/M2Mqtt.NetMf.pdbx",
+        "lib/netmf43/le/M2Mqtt.NetMf.pe",
+        "lib/win81/M2Mqtt.WinRT.dll",
+        "lib/win81/M2Mqtt.WinRT.pdb",
+        "lib/win81/M2Mqtt.WinRT.pri",
+        "lib/wpa81/M2Mqtt.WinRT.dll",
+        "lib/wpa81/M2Mqtt.WinRT.pdb",
+        "lib/wpa81/M2Mqtt.WinRT.pri"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "package",
@@ -12137,6 +12370,27 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Newtonsoft.Json/8.0.3": {
+      "sha512": "KGsYQdS2zLH+H8x2cZaSI7e+YZ4SFIbyy1YJQYl6GYBWjf5o4H1A68nxyq+WTyVSOJQ4GqS/DiPE+UseUizgMg==",
+      "type": "package",
+      "files": [
+        "Newtonsoft.Json.8.0.3.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "tools/install.ps1"
       ]
     },
     "runtime.any.System.Private.DataContractSerialization/4.1.0": {
@@ -14834,7 +15088,10 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "IoT.Ntp >= 1.0.0",
+      "M2Mqtt >= 4.3.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
+      "Newtonsoft.Json >= 8.0.3",
       "UnitsNet >= 3.34.0"
     ],
     "UAP,Version=v10.0": []

@@ -46,19 +46,6 @@ namespace Glovebox.IoT.Devices.HATs {
                 SDA = 2,
                 SCL = 3
             }
-
-            //// Map phycical channels to location on bread board
-            //public enum Analog : byte {
-            //    A1 = 3,
-            //    A2 = 2,
-            //    A3 = 1,
-            //    A4 = 0
-            //}
-
-            public enum Motor : byte {
-                MotorOne,
-                MotorTwo
-            }
         }
 
         public enum State {
@@ -78,6 +65,11 @@ namespace Glovebox.IoT.Devices.HATs {
             Ain2 = 2,
             Ain3 = 1,
             Ain4 = 0
+        }
+
+        public enum MotorId : byte {
+            MotorOne,
+            MotorTwo
         }
 
         public enum DigitalPin : byte {
@@ -106,7 +98,7 @@ namespace Glovebox.IoT.Devices.HATs {
         AdcProviderManager adcManager;
         IReadOnlyList<AdcController> adcControllers;
         AdcController Adc { get; set; }
-        ADS1015.Gain gain = ADS1015.Gain.Volt33;
+        ADS1015.Gain gain = ADS1015.Gain.Volt5;
 
         Windows.Devices.Adc.AdcChannel[] channels = new AdcChannel[4];
 
@@ -124,7 +116,7 @@ namespace Glovebox.IoT.Devices.HATs {
             IsAdcInitalised = true;
         }
 
-        public ExplorerHatPro(ADS1015.Gain gain = ADS1015.Gain.Volt33) {
+        public ExplorerHatPro(ADS1015.Gain gain = ADS1015.Gain.Volt5) {
             this.gain = gain;
             for (int l = 0; l < LedCount; l++) {  // turn off the leds at startup time
                 this.Led((Pin.Led)l).Off();
@@ -132,12 +124,12 @@ namespace Glovebox.IoT.Devices.HATs {
         }
 
 
-        public Motor Motor(Pin.Motor motor) {
+        public Motor Motor(MotorId motor) {
             switch (motor) {
-                case Pin.Motor.MotorOne:
+                case MotorId.MotorOne:
                     if (motors[0] == null) { motors[0] = new Motor((int)MotorMap.OnePlus, (int)MotorMap.OneMinus); }
                     return motors[0];
-                case Pin.Motor.MotorTwo:
+                case MotorId.MotorTwo:
                     if (motors[1] == null) { motors[1] = new Motor((int)MotorMap.TwoPlus, (int)MotorMap.TwoMinus); }
                     return motors[1];
                 default:
