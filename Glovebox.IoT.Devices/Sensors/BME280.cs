@@ -11,12 +11,16 @@ namespace Glovebox.IoT.Devices.Sensors {
 
     // code migrated from https://raw.githubusercontent.com/adafruit/Adafruit_BME280_Library/master/Adafruit_BME280.cpp
     // http://lxr.free-electrons.com/source/drivers/iio/pressure/BME280.c
+    // https://github.com/BoschSensortec/BME280_driver
+    // https://raw.githubusercontent.com/todotani/BME280_Test/master/BME280_Test/BME280.cs
     public class BME280 : IDisposable {
 
         const byte BME280_Address = 0x76;
         const byte BME280_Signature = 0x60;
 
+
         enum Register : byte {
+
             BME280_REGISTER_DIG_T1 = 0x88,
             BME280_REGISTER_DIG_T2 = 0x8A,
             BME280_REGISTER_DIG_T3 = 0x8C,
@@ -34,12 +38,9 @@ namespace Glovebox.IoT.Devices.Sensors {
             BME280_REGISTER_DIG_H1 = 0xA1,
             BME280_REGISTER_DIG_H2 = 0xE1,
             BME280_REGISTER_DIG_H3 = 0xE3,
-            BME280_REGISTER_DIG_H4_L = 0xE4,
-            BME280_REGISTER_DIG_H4_H = 0xE5,
-            BME280_REGISTER_DIG_H5_L = 0xE5,
-            BME280_REGISTER_DIG_H5_H = 0xE6,
+            BME280_REGISTER_DIG_H4 = 0xE4,
+            BME280_REGISTER_DIG_H5 = 0xE5,
             BME280_REGISTER_DIG_H6 = 0xE7,
-
 
             BME280_REGISTER_CHIPID = 0xD0,
             BME280_REGISTER_VERSION = 0xD1,
@@ -52,10 +53,9 @@ namespace Glovebox.IoT.Devices.Sensors {
             BME280_REGISTER_CONFIG = 0xF5,
             BME280_REGISTER_PRESSUREDATA = 0xF7,
             BME280_REGISTER_TEMPDATA = 0xFA,
-
-            BME280_REGISTER_HUMIDDATA_MSB = 0xFD,
-            BME280_REGISTER_HUMIDDATA_LSB = 0xFE,
+            BME280_REGISTER_HUMIDDATA = 0xFD,
         };
+
 
 
         public struct BME280_calib_data {
@@ -134,8 +134,8 @@ namespace Glovebox.IoT.Devices.Sensors {
         };
 
         // Value hold sensor operation parameters
-        private byte int_mode = (byte)interface_mode_e.i2c;
-        private byte t_sb;
+        //private byte int_mode = (byte)interface_mode_e.i2c;
+        //private byte t_sb;
         private byte mode;
         private byte filter;
         private byte osrs_p;
@@ -168,15 +168,15 @@ namespace Glovebox.IoT.Devices.Sensors {
 
         public Pressure Pressure => Pressure.From(GetPressure(), PressureUnit.Pascal);
 
-        public double Humidity => ReadHumidity();
+        public double Humidity => GetHumidity();
 
         public BME280(standbySettings_e t_sb = standbySettings_e.tsb_0p5ms,
               mode_e mode = mode_e.smNormal,
               filterCoefficient_e filter = filterCoefficient_e.fc_16,
               oversampling_e osrs_p = oversampling_e.os16x,
-              oversampling_e osrs_t = oversampling_e.os2x,
-              oversampling_e osrs_h = oversampling_e.os1x) {
-            this.t_sb = (byte)t_sb;
+              oversampling_e osrs_t = oversampling_e.os16x,
+              oversampling_e osrs_h = oversampling_e.os16x) {
+            //this.t_sb = (byte)t_sb;
             this.mode = (byte)mode;
             this.filter = (byte)filter;
             this.osrs_p = (byte)osrs_p;
@@ -205,34 +205,17 @@ namespace Glovebox.IoT.Devices.Sensors {
                 byte[] readChipID = new byte[] { (byte)Register.BME280_REGISTER_CHIPID };
                 byte[] ReadBuffer = new byte[] { 0xFF };
 
-                //Read the device signature
-                I2CDevice.WriteRead(readChipID, ReadBuffer);
-                Debug.WriteLine("BME280 Signature: " + ReadBuffer[0].ToString());
 
-                //Verify the device signature
-                if (ReadBuffer[0] != BME280_Signature) {
-                    Debug.WriteLine("BME280::Begin Signature Mismatch.");
+                I2CDevice.WriteRead(readChipID, ReadBuffer);    //Read the device signature
+              
+                if (ReadBuffer[0] != BME280_Signature) {        //Verify the device signature
                     return;
                 }
 
-
                 ReadCoefficients();
-
-    //            I2CDevice.Write(new byte[] { (byte)Register.BME280_REGISTER_CONTROL, 0x3F });
-
-                //Set configuration registers
-                WriteConfigRegister();
-                WriteControlMeasurementRegister();
+ 
                 WriteControlRegisterHumidity();
-
-                //Set configuration registers again to ensure configuration of humidity
-                WriteConfigRegister();
-                WriteControlMeasurementRegister();
-                WriteControlRegisterHumidity();
-
-                //Dummy read temp to setup t_fine
-           //     GetTemperature();
-
+                WriteControlRegisterTempPressureRegister();
 
                 IsInitialised = true;
             }
@@ -241,36 +224,32 @@ namespace Glovebox.IoT.Devices.Sensors {
             }
         }
 
-        //Method to write the config register (default 16)
-        //000  100  00 
-        // ↑  ↑   ↑I2C mode
-        // ↑  ↑Filter coefficient = 16
-        // ↑t_sb = 0.5ms
-        private void WriteConfigRegister() {
-            byte value = (byte)(int_mode + (filter << 2) + (t_sb << 5));
-            byte[] WriteBuffer = new byte[] { (byte)Register.BME280_REGISTER_CONFIG, value };
-            I2CDevice.Write(WriteBuffer);
-            return;
-        }
+        ////Method to write the config register (default 16)
+        ////000  100  00 
+        //// ↑  ↑   ↑I2C mode
+        //// ↑  ↑Filter coefficient = 16
+        //// ↑t_sb = 0.5ms
+        //private void WriteConfigRegister() {
+        //    byte value = (byte)(int_mode + (filter << 2) + (t_sb << 5));
+        //    byte[] WriteBuffer = new byte[] { (byte)Register.BME280_REGISTER_CONFIG, value };
+        //    I2CDevice.Write(WriteBuffer);
+        //    return;
+        //}
 
         //Method to write the control measurment register (default 87)
         //010  101  11 
         // ↑  ↑   ↑ mode
         // ↑  ↑ Pressure oversampling
         // ↑ Temperature oversampling
-        private void WriteControlMeasurementRegister() {
+        private void WriteControlRegisterTempPressureRegister() {
             byte value = (byte)(mode + (osrs_p << 2) + (osrs_t << 5));
-            byte[] WriteBuffer = new byte[] { (byte)Register.BME280_REGISTER_CONTROL, value };
-            I2CDevice.Write(WriteBuffer);
-            return;
+            I2CDevice.Write(new byte[] { (byte)Register.BME280_REGISTER_CONTROL, value });
         }
 
         //Method to write the humidity control register (default 01)
         private void WriteControlRegisterHumidity() {
             byte value = osrs_h;
-            byte[] WriteBuffer = new byte[] { (byte)Register.BME280_REGISTER_CONTROLHUMID, value };
-            I2CDevice.Write(WriteBuffer);
-            return;
+            I2CDevice.Write(new byte[] { (byte)Register.BME280_REGISTER_CONTROLHUMID, value });
         }
 
         void ReadCoefficients() {
@@ -288,15 +267,11 @@ namespace Glovebox.IoT.Devices.Sensors {
             BME280_calib.dig_P8 = readS16_LE(Register.BME280_REGISTER_DIG_P8);
             BME280_calib.dig_P9 = readS16_LE(Register.BME280_REGISTER_DIG_P9);
 
-            // Read humidity calibration data
             BME280_calib.dig_H1 = read8(Register.BME280_REGISTER_DIG_H1);
             BME280_calib.dig_H2 = readS16_LE(Register.BME280_REGISTER_DIG_H2);
             BME280_calib.dig_H3 = read8(Register.BME280_REGISTER_DIG_H3);
-            short e4 = read8(Register.BME280_REGISTER_DIG_H4_L);    // Read 0xE4
-            short e5 = read8(Register.BME280_REGISTER_DIG_H4_H);    // Read 0xE5
-            BME280_calib.dig_H4 = (short)((e4 << 4) + (e5 & 0x0F));
-            short e6 = read8(Register.BME280_REGISTER_DIG_H5_H);    // Read 0xE6
-            BME280_calib.dig_H5 = (short)((e5 >> 4) + (e6 << 4));
+            BME280_calib.dig_H4 = (short)((read8(Register.BME280_REGISTER_DIG_H4) << 4) | (read8(Register.BME280_REGISTER_DIG_H4 + 1) & 0xF));
+            BME280_calib.dig_H5 = (short)((read8(Register.BME280_REGISTER_DIG_H5 + 1) << 4) | (read8(Register.BME280_REGISTER_DIG_H5) >> 4));
             BME280_calib.dig_H6 = (sbyte)read8(Register.BME280_REGISTER_DIG_H6);
         }
 
@@ -358,6 +333,7 @@ namespace Glovebox.IoT.Devices.Sensors {
         }
 
         private double GetPressure() {
+
             GetTemperature(); // the pressure reading has a dependency of temperature
 
             lock (pressureLock) {
@@ -377,8 +353,7 @@ namespace Glovebox.IoT.Devices.Sensors {
                 var2 = var2 + ((var1 * (long)BME280_calib.dig_P5) << 17);
 
                 var2 = var2 + (((long)BME280_calib.dig_P4) << 35);
-                var1 = ((var1 * var1 * (long)BME280_calib.dig_P3) >> 8) +
-                  ((var1 * (long)BME280_calib.dig_P2) << 12);
+                var1 = ((var1 * var1 * (long)BME280_calib.dig_P3) >> 8) + ((var1 * (long)BME280_calib.dig_P2) << 12);
                 var1 = (((((long)1) << 47) + var1)) * ((long)BME280_calib.dig_P1) >> 33;
 
                 if (var1 == 0) {
@@ -391,49 +366,39 @@ namespace Glovebox.IoT.Devices.Sensors {
 
                 p = ((p + var1 + var2) >> 8) + (((long)BME280_calib.dig_P7) << 4);
 
-
                 return Math.Round(p / 256D, 2);
             }
         }
 
-        // Returns humidity in %rH as as double. Output value of “46.332” represents 46.332 %rH
-        private double BME280_compensate_H_double(int adc_H) {
-            double var_H;
 
-            var_H = t_fine - 76800.0;
-            var_H = (adc_H - (BME280_calib.dig_H4 * 64.0 + BME280_calib.dig_H5 / 16384.0 * var_H)) *
-                BME280_calib.dig_H2 / 65536.0 * (1.0 + BME280_calib.dig_H6 / 67108864.0 * var_H *
-                (1.0 + BME280_calib.dig_H3 / 67108864.0 * var_H));
-            var_H = var_H * (1.0 - BME280_calib.dig_H1 * var_H / 524288.0);
+        private double GetHumidity() {
 
-            if (var_H > 100.0) {
-                Debug.WriteLine("BME280_compensate_H_double Jump out to 100%");
-                var_H = 100.0;
-            }
-            else if (var_H < 0.0) {
-                Debug.WriteLine("BME280_compensate_H_double Jump under 0%");
-                var_H = 0.0;
-            }
+            GetTemperature(); // the humidity reading has a dependency of temperature
 
-            return var_H;
-        }
+            lock (humidityLock) {
 
+                Int32 adc_H = read16(Register.BME280_REGISTER_HUMIDDATA);
 
-        private double ReadHumidity() {
-            lock (pressureLock) {
+                Int32 v_x1_u32r;
 
-                Initialise();
+                v_x1_u32r = (t_fine - ((Int32)76800));
 
-                //Read the MSB and LSB of the humidity from the BME280 registers
-                byte hmsb = read8(Register.BME280_REGISTER_HUMIDDATA_MSB);
-                byte hlsb = read8(Register.BME280_REGISTER_HUMIDDATA_LSB);
+                v_x1_u32r = (((((adc_H << 14) - (((Int32)BME280_calib.dig_H4) << 20) -
+                        (((Int32)BME280_calib.dig_H5) * v_x1_u32r)) + ((Int32)16384)) >> 15) *
+                         (((((((v_x1_u32r * ((Int32)BME280_calib.dig_H6)) >> 10) *
+                          (((v_x1_u32r * ((Int32)BME280_calib.dig_H3)) >> 11) + ((Int32)32768))) >> 10) +
+                        ((Int32)2097152)) * ((Int32)BME280_calib.dig_H2) + 8192) >> 14));
 
-                //Combine the values into a 32-bit integer
-                int h = (hmsb << 8) + hlsb;
+                v_x1_u32r = (v_x1_u32r - (((((v_x1_u32r >> 15) * (v_x1_u32r >> 15)) >> 7) *
+                               ((Int32)BME280_calib.dig_H1)) >> 4));
 
-                return BME280_compensate_H_double(h); //Convert the raw value to the humidity in %
+                v_x1_u32r = (v_x1_u32r < 0) ? 0 : v_x1_u32r;
+                v_x1_u32r = (v_x1_u32r > 419430400) ? 419430400 : v_x1_u32r;
+                float h = (v_x1_u32r >> 12);
+                return h / 1024.0;
             }
         }
+
 
 
         public void Dispose() {
