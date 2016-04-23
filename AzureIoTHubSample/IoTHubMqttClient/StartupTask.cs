@@ -57,7 +57,7 @@ namespace IoTHubMqttClient {
                     matrix.FrameClear();
                     matrix.FrameDraw();
 
-                    await Task.Delay(30000); // don't leave this running for too long at this rate as you'll quickly consume your free daily Iot Hub Message limit
+                    await Task.Delay(20000); // don't leave this running for too long at this rate as you'll quickly consume your free daily Iot Hub Message limit
                 }
             });
         }

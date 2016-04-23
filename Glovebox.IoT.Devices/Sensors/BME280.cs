@@ -253,55 +253,59 @@ namespace Glovebox.IoT.Devices.Sensors {
         }
 
         void ReadCoefficients() {
-            BME280_calib.dig_T1 = read16_LE(Register.BME280_REGISTER_DIG_T1);
-            BME280_calib.dig_T2 = readS16_LE(Register.BME280_REGISTER_DIG_T2);
-            BME280_calib.dig_T3 = readS16_LE(Register.BME280_REGISTER_DIG_T3);
+            BME280_calib.dig_T1 = Read16_LE(Register.BME280_REGISTER_DIG_T1);
+            BME280_calib.dig_T2 = ReadS16_LE(Register.BME280_REGISTER_DIG_T2);
+            BME280_calib.dig_T3 = ReadS16_LE(Register.BME280_REGISTER_DIG_T3);
 
-            BME280_calib.dig_P1 = read16_LE(Register.BME280_REGISTER_DIG_P1);
-            BME280_calib.dig_P2 = readS16_LE(Register.BME280_REGISTER_DIG_P2);
-            BME280_calib.dig_P3 = readS16_LE(Register.BME280_REGISTER_DIG_P3);
-            BME280_calib.dig_P4 = readS16_LE(Register.BME280_REGISTER_DIG_P4);
-            BME280_calib.dig_P5 = readS16_LE(Register.BME280_REGISTER_DIG_P5);
-            BME280_calib.dig_P6 = readS16_LE(Register.BME280_REGISTER_DIG_P6);
-            BME280_calib.dig_P7 = readS16_LE(Register.BME280_REGISTER_DIG_P7);
-            BME280_calib.dig_P8 = readS16_LE(Register.BME280_REGISTER_DIG_P8);
-            BME280_calib.dig_P9 = readS16_LE(Register.BME280_REGISTER_DIG_P9);
+            BME280_calib.dig_P1 = Read16_LE(Register.BME280_REGISTER_DIG_P1);
+            BME280_calib.dig_P2 = ReadS16_LE(Register.BME280_REGISTER_DIG_P2);
+            BME280_calib.dig_P3 = ReadS16_LE(Register.BME280_REGISTER_DIG_P3);
+            BME280_calib.dig_P4 = ReadS16_LE(Register.BME280_REGISTER_DIG_P4);
+            BME280_calib.dig_P5 = ReadS16_LE(Register.BME280_REGISTER_DIG_P5);
+            BME280_calib.dig_P6 = ReadS16_LE(Register.BME280_REGISTER_DIG_P6);
+            BME280_calib.dig_P7 = ReadS16_LE(Register.BME280_REGISTER_DIG_P7);
+            BME280_calib.dig_P8 = ReadS16_LE(Register.BME280_REGISTER_DIG_P8);
+            BME280_calib.dig_P9 = ReadS16_LE(Register.BME280_REGISTER_DIG_P9);
 
-            BME280_calib.dig_H1 = read8(Register.BME280_REGISTER_DIG_H1);
-            BME280_calib.dig_H2 = readS16_LE(Register.BME280_REGISTER_DIG_H2);
-            BME280_calib.dig_H3 = read8(Register.BME280_REGISTER_DIG_H3);
-            BME280_calib.dig_H4 = (short)((read8(Register.BME280_REGISTER_DIG_H4) << 4) | (read8(Register.BME280_REGISTER_DIG_H4 + 1) & 0xF));
-            BME280_calib.dig_H5 = (short)((read8(Register.BME280_REGISTER_DIG_H5 + 1) << 4) | (read8(Register.BME280_REGISTER_DIG_H5) >> 4));
-            BME280_calib.dig_H6 = (sbyte)read8(Register.BME280_REGISTER_DIG_H6);
+            BME280_calib.dig_H1 = Read8(Register.BME280_REGISTER_DIG_H1);
+            BME280_calib.dig_H2 = ReadS16_LE(Register.BME280_REGISTER_DIG_H2);
+            BME280_calib.dig_H3 = Read8(Register.BME280_REGISTER_DIG_H3);
+            BME280_calib.dig_H4 = (short)((Read8(Register.BME280_REGISTER_DIG_H4) << 4) | (Read8(Register.BME280_REGISTER_DIG_H4 + 1) & 0xF));
+            BME280_calib.dig_H5 = (short)((Read8(Register.BME280_REGISTER_DIG_H5 + 1) << 4) | (Read8(Register.BME280_REGISTER_DIG_H5) >> 4));
+            BME280_calib.dig_H6 = (sbyte)Read8(Register.BME280_REGISTER_DIG_H6);
         }
 
 
 
-        byte read8(Register reg) {
+        byte Read8(Register reg) {
             byte[] result = new byte[1];
             I2CDevice.WriteRead(new byte[] { (byte)reg }, result);
             return result[0];
         }
 
-        ushort read16(Register reg) {
+        ushort Read16(Register reg) {
             byte[] result = new byte[2];
             I2CDevice.WriteRead(new byte[] { (byte)reg, 0x00 }, result);
             return (ushort)(result[0] << 8 | result[1]);
         }
 
 
-        ushort read16_LE(Register reg) {
-            ushort temp = read16(reg);
+        ushort Read16_LE(Register reg) {
+            ushort temp = Read16(reg);
             return (ushort)(temp >> 8 | temp << 8);
         }
 
-        short readS16(Register reg) => (short)read16(reg);
+        short ReadS16(Register reg) => (short)Read16(reg);
 
 
+        short ReadS16_LE(Register reg) {
+            return (short)Read16_LE(reg);
+        }
 
-        short readS16_LE(Register reg) {
-            return (short)read16_LE(reg);
-
+        Int32 Read24(Register reg) {
+            byte[] result = new byte[3];
+            I2CDevice.WriteRead(new byte[] { (byte)reg, 0x00 }, result);
+            return result[0] << 16 | result[1] << 8 | result[2];
         }
 
 
@@ -310,20 +314,31 @@ namespace Glovebox.IoT.Devices.Sensors {
 
                 Initialise();
 
-                int var1, var2;
+                Int32 var1, var2;
+                Int32 adc_T = Read24(Register.BME280_REGISTER_TEMPDATA);
 
-                int adc_T = read16(Register.BME280_REGISTER_TEMPDATA);
-
-                adc_T <<= 8;
-                adc_T |= read8(Register.BME280_REGISTER_TEMPDATA + 2);
                 adc_T >>= 4;
+          
 
-                var1 = ((((adc_T >> 3) - ((int)BME280_calib.dig_T1 << 1))) *
-                     ((int)BME280_calib.dig_T2)) >> 11;
+                //Debug.WriteLine(BME280_calib.dig_T1);
+                //Debug.WriteLine(BME280_calib.dig_T2);
+                //Debug.WriteLine(BME280_calib.dig_T3);
 
-                var2 = (((((adc_T >> 4) - ((int)BME280_calib.dig_T1)) *
-                       ((adc_T >> 4) - ((int)BME280_calib.dig_T1))) >> 12) *
-                     ((int)BME280_calib.dig_T3)) >> 14;
+                //temp reading 8434160 before bitshift right 4
+                //uint8_t dig_T1 28060
+                //int16_t dig_T2 26066
+                //uint8_t dig_T3 50
+                //t_fine reading 124377
+
+                //Debug.WriteLine($"adc_t {adc_T}");
+
+
+                var1 = ((((adc_T >> 3) - ((Int32)BME280_calib.dig_T1 << 1))) *
+                     ((Int32)BME280_calib.dig_T2)) >> 11;
+
+                var2 = (((((adc_T >> 4) - ((Int32)BME280_calib.dig_T1)) *
+                       ((adc_T >> 4) - ((Int32)BME280_calib.dig_T1))) >> 12) *
+                     ((Int32)BME280_calib.dig_T3)) >> 14;
 
                 t_fine = var1 + var2;
 
@@ -341,10 +356,8 @@ namespace Glovebox.IoT.Devices.Sensors {
                 Initialise();
 
                 long var1, var2, p;
+                int adc_P = Read24(Register.BME280_REGISTER_PRESSUREDATA);
 
-                int adc_P = read16(Register.BME280_REGISTER_PRESSUREDATA);
-                adc_P <<= 8;
-                adc_P |= read8(Register.BME280_REGISTER_PRESSUREDATA + 2);
                 adc_P >>= 4;
 
                 var1 = ((long)t_fine) - 128000;
@@ -377,7 +390,7 @@ namespace Glovebox.IoT.Devices.Sensors {
 
             lock (humidityLock) {
 
-                Int32 adc_H = read16(Register.BME280_REGISTER_HUMIDDATA);
+                Int32 adc_H = Read16(Register.BME280_REGISTER_HUMIDDATA);
 
                 Int32 v_x1_u32r;
 
@@ -395,6 +408,7 @@ namespace Glovebox.IoT.Devices.Sensors {
                 v_x1_u32r = (v_x1_u32r < 0) ? 0 : v_x1_u32r;
                 v_x1_u32r = (v_x1_u32r > 419430400) ? 419430400 : v_x1_u32r;
                 float h = (v_x1_u32r >> 12);
+
                 return h / 1024.0;
             }
         }
