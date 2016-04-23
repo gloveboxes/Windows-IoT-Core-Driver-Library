@@ -8,6 +8,15 @@ namespace Glovebox.IoT.Devices.Sensors {
     public class BME280 : BMP280{
 
         static object humidityLock = new object();
+
+        //public enum oversampling_e : byte {  //Oversampling reduces the noise from the sensor
+        //    osSkipped = 0,
+        //    os1x = 1,
+        //    os2x = 2,
+        //    os4x = 3,
+        //    os8x = 4,
+        //    os16x = 5
+        //};
         const byte Humidity16xOverSampling = 0x05; // 16x ovesampling for Humidity
 
         public double Humidity => GetHumidity();

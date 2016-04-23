@@ -12,7 +12,7 @@ namespace Glovebox.IoT.Devices.Sensors {
     // code migrated from https://raw.githubusercontent.com/adafruit/Adafruit_BMP280_Library/master/Adafruit_BMP280.cpp
     // http://lxr.free-electrons.com/source/drivers/iio/pressure/BMP280.c
     // https://github.com/BoschSensortec/BMP280_driver
-    // https://raw.githubusercontent.com/todotani/BMP280_Test/master/BMP280_Test/BMP280.cs
+    // https://github.com/todotani/BME280_Test
     public class BMP280 : IDisposable {
 
         const byte DeviceSignature = 0x60;
