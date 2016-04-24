@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Devices.Adc;
-using Windows.Devices.Gpio;
 
 namespace Glovebox.IoT.Devices.HATs {
     public class ExplorerHatPro : IDisposable {
@@ -23,12 +22,7 @@ namespace Glovebox.IoT.Devices.HATs {
                 Four = 25,
             }
 
-            public enum Led : byte {
-                Blue,
-                Yellow,
-                Red,
-                Green,
-            }
+
 
             public enum Spi : ushort {
                 MOSI = 10,
@@ -83,8 +77,17 @@ namespace Glovebox.IoT.Devices.HATs {
             Dout4
         }
 
-        byte[] LedPinMap = new byte[] { 4, 17, 27, 5 };
-        public int LedCount => LedPinMap.Length;
+        public enum Light : byte {
+            Blue,
+            Yellow,
+            Red,
+            Green,
+        }
+
+        byte[] colourPinMap = new byte[] { 4, 17, 27, 5 };
+        public int ColourCount => colourPinMap.Length;
+
+        Led[] leds = new Led[4];
 
         enum MotorMap : ushort {
             TwoPlus = 21,
@@ -100,10 +103,8 @@ namespace Glovebox.IoT.Devices.HATs {
         AdcController Adc { get; set; }
         ADS1015.Gain gain = ADS1015.Gain.Volt5;
 
-        Windows.Devices.Adc.AdcChannel[] channels = new AdcChannel[4];
-
-        Led[] Leds = new Led[4];
-        Glovebox.IoT.Devices.Actuators.Motor[] motors = new Actuators.Motor[2];
+        AdcChannel[] channels = new AdcChannel[4];
+        Motor[] motors = new Actuators.Motor[2];
 
 
         public async Task InitaliseAdcAsync() {
@@ -118,11 +119,10 @@ namespace Glovebox.IoT.Devices.HATs {
 
         public ExplorerHatPro(ADS1015.Gain gain = ADS1015.Gain.Volt5) {
             this.gain = gain;
-            for (int l = 0; l < LedCount; l++) {  // turn off the leds at startup time
-                this.Led((Pin.Led)l).Off();
+            for (int l = 0; l < ColourCount; l++) {  // turn off the leds at startup time
+                this.Led((Light)l).Off();
             }
         }
-
 
         public Motor Motor(MotorId motor) {
             switch (motor) {
@@ -137,14 +137,13 @@ namespace Glovebox.IoT.Devices.HATs {
             }
         }
 
+        public Led Led(Light colour) {
+            int cpin = (int)colour;
+            if (cpin < 0 || cpin >= ColourCount) { throw new ArgumentOutOfRangeException(); }
 
-        public Led Led(Pin.Led pin) {
-            int lpin = (int)pin;
-            if (lpin < 0 || lpin >= LedCount) { throw new ArgumentOutOfRangeException(); }
-
-            int mappedPin = LedPinMap[lpin];
-            if (Leds[lpin] == null) { Leds[lpin] = new Led(mappedPin); }
-            return Leds[lpin];
+            int mappedPin = colourPinMap[cpin];
+            if (leds[cpin] == null) { leds[cpin] = new Led(mappedPin); }
+            return leds[cpin];
         }
 
         public AdcChannel AnalogRead(AnalogPin pin) {
@@ -157,10 +156,10 @@ namespace Glovebox.IoT.Devices.HATs {
         }
 
         public void Dispose() {
-            for (int l = 0; l < LedCount; l++) {  // turn off the leds at startup time
-                if (Leds[l] != null) {
-                    Leds[l].Dispose();
-                    Leds[l] = null;
+            for (int l = 0; l < ColourCount; l++) {  // turn off the leds at startup time
+                if (leds[l] != null) {
+                    leds[l].Dispose();
+                    leds[l] = null;
                 }
             }
         }

@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using uPLibrary.Networking.M2Mqtt;
 using Windows.ApplicationModel.Background;
+using static Glovebox.IoT.Devices.HATs.ExplorerHatPro;
 using static Glovebox.IoT.Devices.HATs.ExplorerHatPro.Pin;
 
 namespace IoTHubMqttClient {
@@ -68,20 +69,20 @@ namespace IoTHubMqttClient {
 
             switch (message) {
                 case "RED":
-                    hat.Led(Led.Red).On();
+                    hat.Led(Light.Red).On();
                     break;
                 case "GREEN":
-                    hat.Led(Led.Green).On();
+                    hat.Led(Light.Green).On();
                     break;
                 case "BLUE":
-                    hat.Led(Led.Blue).On();
+                    hat.Led(Light.Blue).On();
                     break;
                 case "YELLOW":
-                    hat.Led(Led.Yellow).On();
+                    hat.Led(Light.Yellow).On();
                     break;
                 case "OFF":
-                    for (int l = 0; l < hat.LedCount; l++) {
-                        hat.Led((Led)l).Off();
+                    for (int l = 0; l < hat.ColourCount; l++) {
+                        hat.Led((Light)l).Off();
                     }
                     break;
                 default:

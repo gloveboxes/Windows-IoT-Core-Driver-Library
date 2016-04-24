@@ -36,8 +36,8 @@ namespace Glovebox.IoT.Devices.Actuators {
             InitLed(pinNumber);
         }
 
-        public Led(ExplorerHatPro.Pin.Led pinNumber) {
-            InitLed((int)pinNumber);
+        public Led(ExplorerHatPro.Light colourNumber) {
+            InitLed((int)colourNumber);
         }
 
         private void InitLed(int pinNumber) {

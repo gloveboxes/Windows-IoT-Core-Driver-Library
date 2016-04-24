@@ -21,13 +21,13 @@ namespace ExplorerHatProSample {
                 while (true) {
                     Debug.WriteLine($"Temperature {bmp280.Temperature.DegreesCelsius}C, Pressure {bmp280.Pressure.Hectopascals}, Light ratio {hat.AnalogRead(AnalogPin.Ain2).ReadRatio()} ");
 
-                    for (int l = 0; l < hat.LedCount; l++) {
-                        hat.Led((Led)l).On();
+                    for (int l = 0; l < hat.ColourCount; l++) {
+                        hat.Led((Light)l).On();
                         Task.Delay(20).Wait();
                     }
 
-                    for (int l = 0; l < hat.LedCount; l++) {
-                        hat.Led((Led)l).Off();
+                    for (int l = 0; l < hat.ColourCount; l++) {
+                        hat.Led((Light)l).Off();
                         Task.Delay(20).Wait();
                     }
                 }
