@@ -36,10 +36,6 @@ namespace Glovebox.IoT.Devices.Actuators {
             InitLed(pinNumber);
         }
 
-        public Led(ExplorerHatPro.Light colourNumber) {
-            InitLed((int)colourNumber);
-        }
-
         private void InitLed(int pinNumber) {
             ts.led = gpio.OpenPin(pinNumber, GpioSharingMode.Exclusive);
             ts.led.SetDriveMode(GpioPinDriveMode.Output);
