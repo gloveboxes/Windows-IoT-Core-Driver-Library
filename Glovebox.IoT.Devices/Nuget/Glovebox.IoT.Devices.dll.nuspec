@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.15</version>
+    <version>1.0.16</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -16,7 +16,7 @@ ADS1015 and MCP3002
 
 Sensors
 -------
-- BMP280, BMP180, BMP085 Air Temperature and Pressure
+- BMP280, BME280, BMP180, BMP085 Air Temperature, Pressure, and Humidity
 - MCP970X Range of analog temperature sensors - MCP9700A, MCP9701A, MCP9701AE
 - HCSR04 and Infrared Distance sensors
 - LDR Light Dependent Resistor
@@ -41,6 +41,7 @@ Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Libra
 
     <releaseNotes>
       Update Log
+      1.0.16: Added BME280 Temperature, Humidity and Air Pressure Sensor.  Update for Pimoroni Explorer Pro Hat
       1.0.15: Added max distance constructor and method for hc-sr04 distance sensor
       1.0.8 - 1.0.14 Nuget Packaging issues
       1.0.7: Nuget Package fix
@@ -53,7 +54,7 @@ Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Libra
     </releaseNotes>
     <iconUrl>https://ngtq4a.bn1303.df.livefilestore.com/y3pnCkvgPns1m9j_6Y9YVBFqpWFB5jRwa75Eq740p3nRMNkQ5bCULFMV7R8ofEicQzloMzgZfYIZ5pYC_Vjy2Qb7XFD6UzKMWbq1GdidqzTcSBfHLqd1xBRo3lBp_ZcPQe-ICiLyaK_1Nt9GdFlUi3FdNIUPCa-2BaF0zEKed_7lSI/LEDMatrixNuget.JPG</iconUrl>
     <copyright>Copyright 2015</copyright>
-    <tags>IoT Windows10 Raspberry Minnowboard ADS1015 MCP3002 BMP280 BMP180 BMP085 MCP9700A MCP9701A MCP9701AE HC-SR04 HCSR04 Motor Pimoroni Explorer LED Relay LDR</tags>
+    <tags>IoT Windows10 Raspberry Minnowboard ADS1015 MCP3002 BMP280 BME280 BMP180 BMP085 MCP9700A MCP9701A MCP9701AE HC-SR04 HCSR04 Motor Pimoroni Explorer LED Relay LDR</tags>
     <dependencies>
       <group targetFramework="portable-net45+win+wp80+wpa81">
         <dependency id="UnitsNet" version="3.20.0" />
