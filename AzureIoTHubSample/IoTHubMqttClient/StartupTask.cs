@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using uPLibrary.Networking.M2Mqtt;
 using Windows.ApplicationModel.Background;
 using static Glovebox.IoT.Devices.HATs.ExplorerHatPro;
-using static Glovebox.IoT.Devices.HATs.ExplorerHatPro.Pin;
 
 namespace IoTHubMqttClient {
     public sealed class StartupTask : IBackgroundTask {

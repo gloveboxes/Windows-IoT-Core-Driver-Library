@@ -1,12 +1,10 @@
 ﻿using Glovebox.IoT.Devices.Converters;
 using Glovebox.IoT.Devices.HATs;
 using Glovebox.IoT.Devices.Sensors;
-using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using static Glovebox.IoT.Devices.HATs.ExplorerHatPro;
-using static Glovebox.IoT.Devices.HATs.ExplorerHatPro.Pin;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
