@@ -69,20 +69,20 @@ namespace IoTHubMqttClient {
 
             switch (message) {
                 case "RED":
-                    hat.Led(Light.Red).On();
+                    hat.Light(Colour.Red).On();
                     break;
                 case "GREEN":
-                    hat.Led(Light.Green).On();
+                    hat.Light(Colour.Green).On();
                     break;
                 case "BLUE":
-                    hat.Led(Light.Blue).On();
+                    hat.Light(Colour.Blue).On();
                     break;
                 case "YELLOW":
-                    hat.Led(Light.Yellow).On();
+                    hat.Light(Colour.Yellow).On();
                     break;
                 case "OFF":
                     for (int l = 0; l < hat.ColourCount; l++) {
-                        hat.Led((Light)l).Off();
+                        hat.Light((Colour)l).Off();
                     }
                     break;
                 default:

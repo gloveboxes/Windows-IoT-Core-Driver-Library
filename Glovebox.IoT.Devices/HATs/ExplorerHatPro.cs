@@ -77,7 +77,7 @@ namespace Glovebox.IoT.Devices.HATs {
             Dout4
         }
 
-        public enum Light : byte {
+        public enum Colour : byte {
             Blue,
             Yellow,
             Red,
@@ -120,7 +120,7 @@ namespace Glovebox.IoT.Devices.HATs {
         public ExplorerHatPro(ADS1015.Gain gain = ADS1015.Gain.Volt5) {
             this.gain = gain;
             for (int l = 0; l < ColourCount; l++) {  // turn off the leds at startup time
-                this.Led((Light)l).Off();
+                this.Light((Colour)l).Off();
             }
         }
 
@@ -137,7 +137,7 @@ namespace Glovebox.IoT.Devices.HATs {
             }
         }
 
-        public Led Led(Light colour) {
+        public Led Light(Colour colour) {
             int cpin = (int)colour;
             if (cpin < 0 || cpin >= ColourCount) { throw new ArgumentOutOfRangeException(); }
 

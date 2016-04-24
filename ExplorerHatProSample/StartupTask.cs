@@ -22,12 +22,12 @@ namespace ExplorerHatProSample {
                     Debug.WriteLine($"Temperature {bmp280.Temperature.DegreesCelsius}C, Pressure {bmp280.Pressure.Hectopascals}, Light ratio {hat.AnalogRead(AnalogPin.Ain2).ReadRatio()} ");
 
                     for (int l = 0; l < hat.ColourCount; l++) {
-                        hat.Led((Light)l).On();
+                        hat.Light((Colour)l).On();
                         Task.Delay(20).Wait();
                     }
 
                     for (int l = 0; l < hat.ColourCount; l++) {
-                        hat.Led((Light)l).Off();
+                        hat.Light((Colour)l).Off();
                         Task.Delay(20).Wait();
                     }
                 }
