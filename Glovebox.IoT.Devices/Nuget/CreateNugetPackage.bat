@@ -1,4 +1,4 @@
-﻿rem automate nuget process
+﻿REM automate nuget process
 
 mkdir lib\uap10.0
 copy ..\bin\release\Glovebox.IoT.Devices.dll lib\uap10.0 /y

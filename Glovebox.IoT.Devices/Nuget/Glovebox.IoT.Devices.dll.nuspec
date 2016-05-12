@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Glovebox.IoT.Devices</id>
-    <version>1.0.16</version>
+    <version>1.0.17</version>
     <authors>Dave Glover</authors>
     <title>Windows 10 for Iot Device Driver Library</title>
     <owners>Dave Glover</owners>
@@ -32,7 +32,7 @@ HATs
 ----
 Explorer Hat Pro (https://shop.pimoroni.com/products/explorer-hat).  Pin definitions, on board LEDs, ADS1015 ADC, H-Brigde/Motor (Capacitive touch yet to be implemented)
 
-**NOTE** As at Oct 29, 2015 to use the complete functionality of the Explorer Hat Pro then you need to be running the Windows 10 Insider Preview (build 10.0.10556) available from http://ms-iot.github.io/content/en-US/Downloads.htm
+
     </description>
     <summary>
 Windows 10 for IoT Device Driver Library.  Supports ADCs (ADS1015, MCP3002), Sensors BMP280 and BMP180 Temperature and Pressure Sensor, MCP970X family of analog temperature sensors, LDR, HC-SR04 and Infrared distance sensor plus Motor H-Bridges and Relays.
@@ -41,6 +41,7 @@ Examples at https://github.com/gloveboxes/Windows-10-for-IoT-Device-Driver-Libra
 
     <releaseNotes>
       Update Log
+      1.0.17: Update to the BME280 and BMP280 constructors to allow passing in I2C address
       1.0.16: Added BME280 Temperature, Humidity and Air Pressure Sensor.  Update for Pimoroni Explorer Pro Hat
       1.0.15: Added max distance constructor and method for hc-sr04 distance sensor
       1.0.8 - 1.0.14 Nuget Packaging issues
