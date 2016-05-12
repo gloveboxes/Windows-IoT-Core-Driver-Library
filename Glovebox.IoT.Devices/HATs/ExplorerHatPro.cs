@@ -8,14 +8,14 @@ using Windows.Devices.Adc;
 namespace Glovebox.IoT.Devices.HATs {
     public class ExplorerHatPro : IDisposable {
         public class Pin {
-            public enum Output : ushort {
+            public enum Output : byte {
                 One = 6,
                 Two = 12,
                 Three = 13,
                 Four = 16,
             }
 
-            public enum Input : ushort {
+            public enum Input : byte {
                 One = 23,
                 Two = 22,
                 Three = 24,
@@ -24,14 +24,14 @@ namespace Glovebox.IoT.Devices.HATs {
 
 
 
-            public enum Spi : ushort {
+            public enum Spi : byte {
                 MOSI = 10,
                 MISO = 9,
                 SCK = 11,
                 CS = 8
             }
 
-            public enum Serial : ushort {
+            public enum Serial : byte {
                 TX = 14,
                 RX = 15
             }
@@ -89,7 +89,7 @@ namespace Glovebox.IoT.Devices.HATs {
 
         Led[] leds = new Led[4];
 
-        enum MotorMap : ushort {
+        enum MotorMap : byte {
             TwoPlus = 21,
             TwoMinus = 26,
             OnePlus = 19,

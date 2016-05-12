@@ -91,7 +91,7 @@ namespace Glovebox.IoT.Devices.Sensors {
 
         protected int t_fine;
 
-        public int I2C_ADDRESS { get; set; } = 0x77;
+        private int I2C_ADDRESS { get; set; } = 0x77;
         public string I2cControllerName { get; set; } = "I2C1";  /* For Raspberry Pi 2, use I2C1 */
 
         static object temperatureLock = new object();
@@ -104,6 +104,9 @@ namespace Glovebox.IoT.Devices.Sensors {
         public Temperature Temperature => Temperature.From(GetTemperature(), TemperatureUnit.DegreeCelsius);
         public Pressure Pressure => Pressure.From(GetPressure(), PressureUnit.Pascal);
 
+        public BMP280(int i2cAddress = 0x77) {
+            I2C_ADDRESS = i2cAddress;
+        }
 
         private void Initialise() {
             if (!IsInitialised) {
@@ -126,11 +129,10 @@ namespace Glovebox.IoT.Devices.Sensors {
                 byte[] ReadBuffer = new byte[] { 0xFF };
 
 
-                I2CDevice.WriteRead(readChipID, ReadBuffer);    //Read the device signature
-              
-                if (ReadBuffer[0] != DeviceSignature) {        //Verify the device signature
-                    return;
-                }
+                //I2CDevice.WriteRead(readChipID, ReadBuffer);    //Read the device signature              
+                //if (ReadBuffer[0] != DeviceSignature) {        //Verify the device signature
+                //    return;
+                //}
 
                 ReadCoefficients();
 

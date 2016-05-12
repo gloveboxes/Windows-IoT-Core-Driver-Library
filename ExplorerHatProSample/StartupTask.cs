@@ -14,7 +14,7 @@ namespace ExplorerHatProSample {
         public void Run(IBackgroundTaskInstance taskInstance) {
 
             using (ExplorerHatPro hat = new ExplorerHatPro(ADS1015.Gain.Volt5))
-            using (BMP280 bmp280 = new BMP280() { I2C_ADDRESS = 0x76 }) {
+            using (BMP280 bmp280 = new BMP280(0x76)) {
 
                 while (true) {
                     Debug.WriteLine($"Temperature {bmp280.Temperature.DegreesCelsius}C, Pressure {bmp280.Pressure.Hectopascals}, Light ratio {hat.AnalogRead(AnalogPin.Ain2).ReadRatio()} ");
@@ -29,18 +29,7 @@ namespace ExplorerHatProSample {
                         Task.Delay(20).Wait();
                     }
                 }
-
-                //hat.Motor(MotorId.MotorOne).Forward();
-                //hat.Motor(MotorId.MotorTwo).Backward();
             }
-
-            // 
-            // TODO: Insert code to perform background work
-            //
-            // If you start any asynchronous methods here, prevent the task
-            // from closing prematurely by using BackgroundTaskDeferral as
-            // described in http://aka.ms/backgroundtaskdeferral
-            //
         }
     }
 }

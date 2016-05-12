@@ -21,8 +21,8 @@ namespace Glovebox.IoT.Devices.Sensors {
 
         public double Humidity => GetHumidity();
 
-        public BME280() {
-            I2C_ADDRESS = 0x76; 
+        public BME280(int i2cAddress = 0x77) : base(i2cAddress)
+        {
         }
 
         protected override void ReadCoefficients() {

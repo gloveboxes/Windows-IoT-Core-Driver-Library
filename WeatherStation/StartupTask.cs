@@ -32,7 +32,6 @@ namespace WeatherStation
                 var message = $"{Math.Round(tempAndPressure.Temperature.DegreesCelsius, 1)}C, {Math.Round(tempAndPressure.Pressure.Hectopascals, 1)}hPa ";
 
                 matrix.ScrollStringInFromRight(message, 70);
-
             }
         }
     }
