@@ -1,5 +1,6 @@
 ﻿using Glovebox.IoT.Devices.Actuators;
 using Glovebox.IoT.Devices.Converters;
+using Glovebox.IoT.Devices.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -96,6 +97,16 @@ namespace Glovebox.IoT.Devices.HATs {
             OneMinus = 20
         }
 
+
+        public TouchSensor One { get; private set; }
+        public TouchSensor Two { get; private set; }
+        public TouchSensor Three { get; private set; }
+        public TouchSensor Four { get; private set; }
+        public TouchSensor Five { get; private set; }
+        public TouchSensor Six { get; private set; }
+        public TouchSensor Seven { get; private set; }
+        public TouchSensor Eight { get; private set; }
+
         public bool IsAdcInitalised { get; private set; } = false;
 
         AdcProviderManager adcManager;
@@ -122,7 +133,27 @@ namespace Glovebox.IoT.Devices.HATs {
             for (int l = 0; l < ColourCount; l++) {  // turn off the leds at startup time
                 this.Light((Colour)l).Off();
             }
+
+            InitTouch();
         }
+
+        void InitTouch()
+        {
+
+            var cap1208 = new Cap1208Device();
+
+            One = new TouchSensor(cap1208, TouchChannel.One);
+            Two = new TouchSensor(cap1208, TouchChannel.Two);
+            Three = new TouchSensor(cap1208, TouchChannel.Three);
+            Four = new TouchSensor(cap1208, TouchChannel.Four);
+            Five = new TouchSensor(cap1208, TouchChannel.Five);
+            Six = new TouchSensor(cap1208, TouchChannel.Six);
+            Seven = new TouchSensor(cap1208, TouchChannel.Seven);
+            Eight = new TouchSensor(cap1208, TouchChannel.Eight);
+
+            cap1208.Start();
+        }
+
 
         public Motor Motor(MotorId motor) {
             switch (motor) {
