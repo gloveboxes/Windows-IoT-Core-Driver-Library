@@ -49,7 +49,7 @@ https://github.com/anjdreas/UnitsNet
     using System.Threading.Tasks;
     using Windows.ApplicationModel.Background;
 
-    // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
+    // The Background Application template is documented at https://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409&WT.mc_id=iot-0000-dglover
 
     namespace Examples
     {
@@ -117,7 +117,7 @@ https://github.com/anjdreas/UnitsNet
     using Windows.ApplicationModel.Background;
     using Windows.Devices.Adc;
 
-    // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
+    // The Background Application template is documented at https://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409&WT.mc_id=iot-0000-dglover
 
     namespace Examples
     {
